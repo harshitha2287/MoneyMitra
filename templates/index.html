@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>MoneyMitra Loan Checker</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<h2>MoneyMitra Loan Approval Checker</h2>
+
+<form method="POST">
+
+Name:<br>
+<input name="name" required><br><br>
+
+Age:<br>
+<input name="age" required><br><br>
+
+Employment Type:<br>
+<select name="employment">
+<option>Salaried</option>
+<option>Self Employed</option>
+<option>Business Owner</option>
+<option>Freelancer</option>
+<option>Government Employee</option>
+<option>Student</option>
+<option>Unemployed</option>
+</select><br><br>
+
+Monthly Income:<br>
+<input name="income" required><br><br>
+
+Do you have an existing loan?<br>
+
+<select id="existingLoan" name="existing_loan">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<br><br>
+
+<div id="loanDetails" style="display:none;">
+
+Existing EMI:<br>
+<input name="existing_emi"><br><br>
+
+Remaining Loan Amount:<br>
+<input name="remaining_loan"><br><br>
+
+</div>
+
+Do you have a credit card?<br>
+
+<select id="creditCard" name="credit_card">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<br><br>
+
+<div id="creditScoreField" style="display:none;">
+
+Credit Score:<br>
+<input name="credit"><br><br>
+
+</div>
+
+New Loan Amount:<br>
+<input name="amount" required><br><br>
+
+Loan Term (years):<br>
+<input name="term" required><br><br>
+
+<button type="submit">Check Loan</button>
+
+</form>
+
+<br>
+
+<a href="/history">View Loan History</a>
+
+{% if result %}
+
+<h3>Loan Status: {{ result }}</h3>
+
+<h4>Reasons:</h4>
+
+<ul>
+{% for r in reasons %}
+<li>{{ r }}</li>
+{% endfor %}
+</ul>
+
+{% endif %}
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
